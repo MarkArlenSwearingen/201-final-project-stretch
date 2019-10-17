@@ -115,11 +115,75 @@ var winRound = function () {
   }
 };
 
+// Function to make game easier or more difficult
+
+var difficulty = function {
+  var level = 'easy'; //hard coded for testing 
+  if(level === 'easy'){
+    if (userChoice === 'rock'){
+      var choices = ['rock', 'scissors', 'lizard', 'spock'];
+      var randomNumber = Math.floor(Math.random() * 4);
+      var computerChoice = choices[randomNumber];
+      }
+      if (userChoice === 'scissors'){
+      var choices = ['paper', 'scissors', 'lizard', 'spock'];
+      var randomNumber = Math.floor(Math.random() * 4);
+      var computerChoice = choices[randomNumber];
+      }
+      if (userChoice === 'paper'){
+        var choices = ['rock', 'paper', 'lizard', 'spock'];
+        var randomNumber = Math.floor(Math.random() * 4);
+        var computerChoice = choices[randomNumber];
+        }
+      if (userChoice === 'lizard'){
+        var choices = ['paper', 'scissors', 'lizard', 'spock'];
+        var randomNumber = Math.floor(Math.random() * 4);
+        var computerChoice = choices[randomNumber];
+        }
+      if (userChoice === 'spock'){
+        var choices = ['rock', 'scissors', 'lizard', 'spock'];
+        var randomNumber = Math.floor(Math.random() * 4);
+        var computerChoice = choices[randomNumber];
+        }
+  }
+
+  if(level === 'difficult'){
+    if (userChoice === 'rock'){
+      var choices = ['rock', 'paper', 'lizard', 'spock'];
+      var randomNumber = Math.floor(Math.random() * 4);
+      var computerChoice = choices[randomNumber];
+      }
+      if (userChoice === 'scissors'){
+      var choices = ['rock', 'scissors', 'lizard', 'spock'];
+      var randomNumber = Math.floor(Math.random() * 4);
+      var computerChoice = choices[randomNumber];
+      }
+      if (userChoice === 'paper'){
+        var choices = ['paper', 'scissors', 'lizard', 'spock'];
+        var randomNumber = Math.floor(Math.random() * 4);
+        var computerChoice = choices[randomNumber];
+        }
+      if (userChoice === 'lizard'){
+        var choices = ['rock', 'scissors', 'lizard', 'spock'];
+        var randomNumber = Math.floor(Math.random() * 4);
+        var computerChoice = choices[randomNumber];
+        }
+      if (userChoice === 'spock'){
+        var choices = ['rock', 'paper', 'lizard', 'spock'];
+        var randomNumber = Math.floor(Math.random() * 4);
+        var computerChoice = choices[randomNumber];
+        }
+  }
+  if(level === 'random'){
+    var choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+    var randomNumber = Math.floor(Math.random() * 5);
+    var computerChoice = choices[randomNumber];
+  }
+}
+
 // Function to hold game conditionals
 var playGame = function(e) {
-  var choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
-  var randomNumber = Math.floor(Math.random() * 5);
-  var computerChoice = choices[randomNumber];
+  difficulty();
   var userChoice = e.target.id;
   // Checks for draw
   if (userChoice === computerChoice) {
