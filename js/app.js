@@ -117,10 +117,9 @@ var winRound = function () {
 };
 
 // Function to make game easier or more difficult
-
 var difficulty = function (userChoice){
   var level = 'easy'; //hard coded for testing
-  if(level === 'easy'){ 
+  if(level === 'easy'){
     if (userChoice === 'rock'){
       var choices = ['rock', 'scissors', 'lizard', 'spock'];
       var randomNumber = Math.floor(Math.random() * 4);
@@ -146,9 +145,6 @@ var difficulty = function (userChoice){
       randomNumber = Math.floor(Math.random() * 4);
       computerChoice = choices[randomNumber];
     }
-    console.log(userChoice);
-
-    console.log(computerChoice);
   }
 
   if(level === 'difficult'){
@@ -195,28 +191,13 @@ var difficulty = function (userChoice){
   } else if(computerChoice === 'spock') {
     computerChoiceImgEl.src = '../img/glowspock.png';
   }
-  console.log(computerChoice);
-  console.log(userChoice);
   checkForResult(userChoice, computerChoice);
 };
 
 // Function to hold game conditionals
 var playGame = function(e) {
   var userChoice = e.target.id;
-
   difficulty(userChoice);
-  // // Dictates what image will display based on the computer's choice and assigns the img tag a new ID
-  // if(computerChoice === 'rock') {
-  //   computerChoiceImgEl.src = '../img/glowrock.png';
-  // } else if(computerChoice === 'paper') {
-  //   computerChoiceImgEl.src = '../img/glowpaper.png';
-  // } else if(computerChoice === 'scissors') {
-  //   computerChoiceImgEl.src = '../img/glowscissors.png';
-  // } else if(computerChoice === 'lizard') {
-  //   computerChoiceImgEl.src = '../img/glowlizard.png';
-  // } else if(computerChoice === 'spock') {
-  //   computerChoiceImgEl.src = '../img/glowspock.png';
-  // }
   winRound();
 };
 
@@ -258,9 +239,7 @@ function handleClickOnImg(event) {
 }
 
 var checkForResult = function(userChoice, computerChoice){
-  console.log(userChoice);
-  console.log(computerChoice);
-// Checks for draw
+  // Checks for draw
   if (userChoice === computerChoice) {
     bottomChatHeader.textContent = 'Draw';
     bottomChatText.textContent = `Your ${userChoice} has tied my ${computerChoice}`;
