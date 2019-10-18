@@ -15,8 +15,6 @@
 </head>
 
 <body>
-
-
   <div id="overlay">
     <h1>Cosmic Arcade</h1>
     <form id="enterarcade">
@@ -43,7 +41,11 @@
   </header>
 
   <main>
-
+    <form action="/submit-cat-photo">
+      <label for="easy"><input id="easy" type="radio" name="level" value="easy"> Easy</label>
+       <label for="random"><input id="random" type="radio" name="level" value="random" checked> Normal</label>
+      <label for="difficult"><input id="difficult" type="radio" name="level" value="difficult"> Difficult</label><br>
+      </form>
     <div id="playerName-container">
       <p id="playerName">You</p>
     </div>

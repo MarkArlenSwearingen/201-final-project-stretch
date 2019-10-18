@@ -15,6 +15,7 @@ var imageChoices = document.getElementById('ul-weapons');
 var playerChoiceImgEl = document.getElementById('player-choice');
 var computerChoiceImgEl = document.getElementById('computer-choice');
 var user = null;
+var level = 'random';
 
 //Create Constructor Function
 var CreatePlayer = function(userName){
@@ -115,12 +116,138 @@ var winRound = function () {
   }
 };
 
+// Function to make game easier or more difficult
+var difficulty = function (userChoice){
+  console.log(easy.checked);
+  if(easy.checked === true){
+    level = 'easy';
+  }
+  if(random.checked === true){
+    level = 'random';
+  }
+  if(difficult.checked === true){
+    level = 'difficult';
+  }
+  if(level === 'easy'){
+    if (userChoice === 'rock'){
+      var choices = ['rock', 'scissors', 'lizard', 'spock'];
+      var randomNumber = Math.floor(Math.random() * 4);
+      var computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'scissors'){
+      choices = ['paper', 'scissors', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'paper'){
+      choices = ['rock', 'paper', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'lizard'){
+      choices = ['paper', 'scissors', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'spock'){
+      choices = ['rock', 'scissors', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+  }
+
+  if(level === 'difficult'){
+    if (userChoice === 'rock'){
+      choices = ['rock', 'paper', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'scissors'){
+      choices = ['rock', 'scissors', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'paper'){
+      choices = ['paper', 'scissors', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'lizard'){
+      choices = ['rock', 'scissors', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+    if (userChoice === 'spock'){
+      choices = ['rock', 'paper', 'lizard', 'spock'];
+      randomNumber = Math.floor(Math.random() * 4);
+      computerChoice = choices[randomNumber];
+    }
+  }
+  if(level === 'random'){
+    choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+    randomNumber = Math.floor(Math.random() * 5);
+    computerChoice = choices[randomNumber];
+  }
+  // Dictates what image will display based on the computer's choice and assigns the img tag a new ID
+  if(computerChoice === 'rock') {
+    computerChoiceImgEl.src = '../img/glowrock.png';
+  } else if(computerChoice === 'paper') {
+    computerChoiceImgEl.src = '../img/glowpaper.png';
+  } else if(computerChoice === 'scissors') {
+    computerChoiceImgEl.src = '../img/glowscissors.png';
+  } else if(computerChoice === 'lizard') {
+    computerChoiceImgEl.src = '../img/glowlizard.png';
+  } else if(computerChoice === 'spock') {
+    computerChoiceImgEl.src = '../img/glowspock.png';
+  }
+  checkForResult(userChoice, computerChoice);
+};
+
 // Function to hold game conditionals
 var playGame = function(e) {
-  var choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
-  var randomNumber = Math.floor(Math.random() * 5);
-  var computerChoice = choices[randomNumber];
   var userChoice = e.target.id;
+  difficulty(userChoice);
+  winRound();
+};
+
+// Adds listeners to each static image from index.html
+rock.addEventListener('click', handleClickOnImg);
+rock.addEventListener('click', playGame);
+
+paper.addEventListener('click', handleClickOnImg);
+paper.addEventListener('click', playGame);
+
+scissors.addEventListener('click', handleClickOnImg);
+scissors.addEventListener('click', playGame);
+
+lizard.addEventListener('click', handleClickOnImg);
+lizard.addEventListener('click', playGame);
+
+spock.addEventListener('click', handleClickOnImg);
+spock.addEventListener('click', playGame);
+
+// Dictates what image will display based on the player's choice and assigns the img tag a new ID
+function handleClickOnImg(event) {
+  var choice = event.target.id;
+  if(choice === 'rock') {
+    playerChoiceImgEl.src = '../img/glowrock.png';
+    playerChoiceImgEl.id = 'rock-choice';
+  } else if(choice === 'paper') {
+    playerChoiceImgEl.src = '../img/glowpaper.png';
+    playerChoiceImgEl.id = 'paper-choice';
+  } else if(choice === 'scissors') {
+    playerChoiceImgEl.src = '../img/glowscissors.png';
+    playerChoiceImgEl.id = 'scissors-choice';
+  } else if(choice === 'lizard') {
+    playerChoiceImgEl.src = '../img/glowlizard.png';
+    playerChoiceImgEl.id = 'lizard-choice';
+  } else if(choice === 'spock') {
+    playerChoiceImgEl.src = '../img/glowspock.png';
+    playerChoiceImgEl.id = 'spock-choice';
+  }
+}
+
+var checkForResult = function(userChoice, computerChoice){
   // Checks for draw
   if (userChoice === computerChoice) {
     bottomChatHeader.textContent = 'Draw';
@@ -250,56 +377,6 @@ var playGame = function(e) {
       updateScore();
     }
   }
-  // Dictates what image will display based on the computer's choice and assigns the img tag a new ID
-  if(computerChoice === 'rock') {
-    computerChoiceImgEl.src = '../img/glowrock.png';
-  } else if(computerChoice === 'paper') {
-    computerChoiceImgEl.src = '../img/glowpaper.png';
-  } else if(computerChoice === 'scissors') {
-    computerChoiceImgEl.src = '../img/glowscissors.png';
-  } else if(computerChoice === 'lizard') {
-    computerChoiceImgEl.src = '../img/glowlizard.png';
-  } else if(computerChoice === 'spock') {
-    computerChoiceImgEl.src = '../img/glowspock.png';
-  }
-  winRound();
 };
-
-// Adds listeners to each static image from index.html
-rock.addEventListener('click', handleClickOnImg);
-rock.addEventListener('click', playGame);
-
-paper.addEventListener('click', handleClickOnImg);
-paper.addEventListener('click', playGame);
-
-scissors.addEventListener('click', handleClickOnImg);
-scissors.addEventListener('click', playGame);
-
-lizard.addEventListener('click', handleClickOnImg);
-lizard.addEventListener('click', playGame);
-
-spock.addEventListener('click', handleClickOnImg);
-spock.addEventListener('click', playGame);
-
-// Dictates what image will display based on the player's choice and assigns the img tag a new ID
-function handleClickOnImg(event) {
-  var choice = event.target.id;
-  if(choice === 'rock') {
-    playerChoiceImgEl.src = '../img/glowrock.png';
-    playerChoiceImgEl.id = 'rock-choice';
-  } else if(choice === 'paper') {
-    playerChoiceImgEl.src = '../img/glowpaper.png';
-    playerChoiceImgEl.id = 'paper-choice';
-  } else if(choice === 'scissors') {
-    playerChoiceImgEl.src = '../img/glowscissors.png';
-    playerChoiceImgEl.id = 'scissors-choice';
-  } else if(choice === 'lizard') {
-    playerChoiceImgEl.src = '../img/glowlizard.png';
-    playerChoiceImgEl.id = 'lizard-choice';
-  } else if(choice === 'spock') {
-    playerChoiceImgEl.src = '../img/glowspock.png';
-    playerChoiceImgEl.id = 'spock-choice';
-  }
-}
 
 retrieveLS();
