@@ -538,3 +538,22 @@ hr {
     margin-left: 25%;
   }
 }
+
+
+#level li {
+  padding: 1%;
+  font-weight: 600;
+  display: inline;
+  /* Puts space between two lines of navigation when window is small */
+  line-height: 30px;
+  color: #00AAFF;
+  text-decoration: none;
+  background-color: none;
+}
+
+#level li>select {
+  color: #00AAFF;
+  /* text-decoration: none;
+  text-decoration-color: #00AAFF; */
+  background-color: none;
+}
