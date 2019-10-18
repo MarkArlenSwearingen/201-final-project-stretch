@@ -15,7 +15,7 @@ var imageChoices = document.getElementById('ul-weapons');
 var playerChoiceImgEl = document.getElementById('player-choice');
 var computerChoiceImgEl = document.getElementById('computer-choice');
 var user = null;
-var computerChoice;
+var level = 'random';
 
 //Create Constructor Function
 var CreatePlayer = function(userName){
@@ -118,7 +118,16 @@ var winRound = function () {
 
 // Function to make game easier or more difficult
 var difficulty = function (userChoice){
-  var level = 'easy'; //hard coded for testing
+  console.log(easy.checked);
+  if(easy.checked === true){
+    level = 'easy';
+  }
+  if(random.checked === true){
+    level = 'random';
+  }
+  if(difficult.checked === true){
+    level = 'difficult';
+  }
   if(level === 'easy'){
     if (userChoice === 'rock'){
       var choices = ['rock', 'scissors', 'lizard', 'spock'];
