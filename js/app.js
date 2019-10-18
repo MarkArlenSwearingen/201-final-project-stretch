@@ -118,7 +118,6 @@ var winRound = function () {
 
 // Function to make game easier or more difficult
 var difficulty = function (userChoice){
-  console.log(easy.checked);
   if(easy.checked === true){
     level = 'easy';
   }
